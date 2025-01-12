@@ -1,2 +1,5 @@
 *cache*
 **/*cache*/
+build/
+install/
+log/
