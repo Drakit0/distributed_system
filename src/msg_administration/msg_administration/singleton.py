@@ -1,13 +1,13 @@
 from rclpy.node import Node
-from .subscribers import LidarSubscriber, OdomSubscriber, VelSubscriber, PoseSubscriber, FloatSubscriber
-from .creators import LidarSubscriberCreator, OdomSubscriberCreator, VelSubscriberCreator, PoseSubscriberCreator, FloatSubscriberCreator
+from .subscribers import LidarSubscriber, OdomSubscriber, TwistSubscriber, PoseSubscriber, FloatSubscriber
+from .creators import LidarSubscriberCreator, OdomSubscriberCreator, TwistSubscriberCreator, PoseSubscriberCreator, FloatSubscriberCreator
 
 class SubscriberManager:
     
     def __init__(self):
         self._subscribers = {}
         
-    def get_subscriber(self, node:Node, topic:str) -> LidarSubscriber | OdomSubscriber | VelSubscriber | PoseSubscriber | FloatSubscriber:
+    def get_subscriber(self, node:Node, topic:str) -> LidarSubscriber | OdomSubscriber | TwistSubscriber | PoseSubscriber | FloatSubscriber:
         """
         Get the subscriber for the topic if it exists, otherwise create it.
         
@@ -25,7 +25,7 @@ class SubscriberManager:
             
         return self._subscribers[topic]
     
-    def _create_subscriber(self, node:Node, topic:str) -> LidarSubscriber | OdomSubscriber | VelSubscriber | PoseSubscriber | FloatSubscriber | None:
+    def _create_subscriber(self, node:Node, topic:str) -> LidarSubscriber | OdomSubscriber | TwistSubscriber | PoseSubscriber | FloatSubscriber | None:
         if topic == "/scan":
             creator = LidarSubscriberCreator(node)
             return creator.create_subscriber()
@@ -35,11 +35,11 @@ class SubscriberManager:
             return creator.create_subscriber()
         
         elif topic == "/feedback_vel":
-            creator = VelSubscriberCreator(node, topic)
+            creator = TwistSubscriberCreator(node, topic)
             return creator.create_subscriber()
         
         elif topic == "/control_cmd_vel":
-            creator = VelSubscriberCreator(node, topic)
+            creator = TwistSubscriberCreator(node, topic)
             return creator.create_subscriber()
 
         elif topic == "/target_pose":

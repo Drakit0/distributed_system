@@ -1,6 +1,6 @@
 from .factory import SubscriberFactory
 from rclpy.node import Node
-from .subscribers import LidarSubscriber, OdomSubscriber, VelSubscriber, PoseSubscriber, FloatSubscriber
+from .subscribers import LidarSubscriber, OdomSubscriber, TwistSubscriber, PoseSubscriber, FloatSubscriber
 
 class LidarSubscriberCreator(SubscriberFactory):
     
@@ -18,14 +18,14 @@ class OdomSubscriberCreator(SubscriberFactory):
     def create_subscriber(self) -> OdomSubscriber:
         return OdomSubscriber(self._node)
     
-class VelSubscriberCreator(SubscriberFactory):
+class TwistSubscriberCreator(SubscriberFactory):
     
     def __init__(self, node:Node, topic:str) -> None:
         self._node = node
         self._topic = topic
     
-    def create_subscriber(self) -> VelSubscriber:
-        return VelSubscriber(self._node, self._topic)
+    def create_subscriber(self) -> TwistSubscriber:
+        return TwistSubscriber(self._node, self._topic)
     
 class PoseSubscriberCreator(SubscriberFactory):
     

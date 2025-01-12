@@ -2,6 +2,7 @@ import time
 import rclpy
 from threading import Lock
 from rclpy.node import Node
+from .processor import DataProcessor
 from .singleton import SubscriberManager
 
 class Mediator(Node):
@@ -13,6 +14,7 @@ class Mediator(Node):
         self._show_topics = show_topics
         self._lock = Lock()
         self._subscribers_data = {}
+        self._data_processor = DataProcessor(user = "Pablo", password = "REDACTED")
         self._subscriber_manager = subscriber_manager
         
         self._timer = self.create_timer(process_interval, self._timer_callback)
@@ -60,7 +62,7 @@ class Mediator(Node):
            
         with self._lock:         
             if all(topic in self._subscribers_data.keys() for topic in self._necessary_topics): # Check if all necessary topics are available
-                self.get_logger().info(f"{self._subscribers_data.keys()}")
+                self._data_processor.process_reading(self._subscribers_data, self._necessary_topics)
                 
             else:
                 self.get_logger().info("Necessary topics are not available yet.")

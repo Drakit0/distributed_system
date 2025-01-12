@@ -80,7 +80,7 @@ class OdomSubscriber(ISubscriber):
         with self._lock:
             self.messages.clear()
         
-class VelSubscriber(ISubscriber):
+class TwistSubscriber(ISubscriber):
     
     def __init__(self, node:Node, topic:str) -> None:
         super().__init__() 
