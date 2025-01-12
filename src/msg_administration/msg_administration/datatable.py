@@ -4,12 +4,13 @@ from nav_msgs.msg import Odometry
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist, Pose
 
-class IDataTable(ABC):
+class DataTable(ABC):
     
-    def __init__(self, db: str, user:str, password:str):
+    def __init__(self, db: str, user:str, password:str, host:str):
         self._db = db
         self._user = user
         self._password = password
+        self._host = host
     
     @abstractmethod
     def connect(self):

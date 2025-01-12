@@ -1,7 +1,7 @@
 import pymysql
-from .idatatable import IDataTable
+from .datatable import DataTable
 
-class HistoricalTable(IDataTable):
+class HistoricalTable(DataTable):
     
     def __init__(self, db: str, user:str, password:str, host = "localhost"):
         self._db = db
