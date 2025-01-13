@@ -70,8 +70,8 @@ class Mediator(Node):
            
         with self._lock:         
             if all(topic in self._subscribers_data.keys() for topic in self._necessary_topics): # Check if all necessary topics are available
-                # self._data_processor.process_reading(self._subscribers_data, self._necessary_topics)
-                self.get_logger().info(list(self._subscribers_data.keys()))
+                self._data_processor.process_reading(self._subscribers_data, self._necessary_topics)
+                # self.get_logger().info(list(self._subscribers_data.keys()))
                 
             else:
                 self.get_logger().info("Necessary topics are not available yet.")

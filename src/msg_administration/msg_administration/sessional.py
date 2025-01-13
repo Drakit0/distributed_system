@@ -1,9 +1,9 @@
 import pymysql
-from .idatatable import IDataTable
+from .datatable import DataTable
 
-class SessionalTable(IDataTable):
+class SessionalTable(DataTable):
     
-    def __init__(self, db: str, user:str, password:str, host = "localhost"):
+    def __init__(self, db: str, user:str, password:str, host = "127.0.0.1"):
         self._db = db
         self._user = user
         self._password = password
