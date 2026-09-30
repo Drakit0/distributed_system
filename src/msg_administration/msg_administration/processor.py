@@ -1,3 +1,4 @@
+import os
 import datetime
 import numpy as np
 from std_msgs.msg import Float64
@@ -10,10 +11,11 @@ from geometry_msgs.msg import Twist, Pose
 
 class DataProcessor:
     
-    def __init__(self, db = "ChairRecordings", user = "UNIJES", password = "REDACTED"):
-        self._db = db
-        self._user = user
-        self._password = password
+    def __init__(self, db = None, user = None, password = None):
+        # Credentials come from the environment, never from the source.
+        self._db = db or os.environ.get("CHAIR_DB_NAME", "ChairRecordings")
+        self._user = user or os.environ.get("CHAIR_DB_USER", "UNIJES")
+        self._password = password or os.environ["CHAIR_DB_PASSWORD"]
         self._data_buffer = []
         self._recording = {}
         self._sessional_table = SessionalTable(self._db, self._user, self._password)
