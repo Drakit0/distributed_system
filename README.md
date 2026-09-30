@@ -2,7 +2,7 @@
 
 A ROS 2 (Python) package that listens to the topics of an autonomous wheelchair and is meant to store them in MySQL. It was written for the wheelchair that Universidad Pontificia Comillas prepares for the UNIJES competition between Jesuit universities. It is a university project by one author, written between November 2024 and January 2025. The code is unfinished in places, see "State" below.
 
-The report that explains the design is in Spanish: `documentación.pdf` (source `documentación.docx`). The class diagrams are `initial_uml.drawio` (first plan) and `final_uml.drawio` (as implemented).
+The written report is not included in this repository. The class diagrams are `initial_uml.drawio` (first plan) and `final_uml.drawio` (as implemented).
 
 ## Design
 
